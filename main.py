@@ -13,9 +13,6 @@ import logging as log
 
 log.basicConfig(level=log.DEBUG)
 
-parser = argparse.ArgumentParser()
-parser.add_argument('dir')
-args = parser.parse_args()
 
 class Song(object):
     """
@@ -103,9 +100,11 @@ def downloadYoutubeVideo(url, path):
         ydl.download([url])
 
 
-getSongs(args.dir)[0].downloadVideo()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('dir')
+    args = parser.parse_args()
 
-# for song in getSongs(args.dir):
-#     print(f'{song.name}, {song.artist}, {song.topLink()}')
+    for song in getSongs(args.dir):
+        song.downloadVideo()
 
-# dl_test()
