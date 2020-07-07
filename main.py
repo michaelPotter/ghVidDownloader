@@ -91,10 +91,8 @@ def getSongs(root):
 def downloadYoutubeVideo(url, path):
     """Downloads and saves the video at url to a file at path
 
-    :url: TODO
-    :path: TODO
-    :returns: TODO
-
+    :url: url of youtube video
+    :path: path to save downloaded file to
     """
     ydl_opts = {
             'format': 'mp4',
