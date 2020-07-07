@@ -70,6 +70,7 @@ class Song(object):
             log.debug(f'video found for {self.name}, {self.artist}')
 
     def saveVideoURL(self):
+        # TODO see if this can be saved in song.ini
         with open(os.path.join(self.path, 'video_origin.txt'), 'w') as f:
             f.write(self.topLink())
          
