@@ -61,9 +61,9 @@ class Song(object):
         """
         if not self.hasVideo():
             log.debug(f'Downloading video for {self.name}, {self.artist}')
+            self.saveVideoURL()
             downloadYoutubeVideo(self.topLink(), self.videoPath)
         else:
-            self.saveVideoURL()
             log.debug(f'video found for {self.name}, {self.artist}')
 
     def saveVideoURL(self):
