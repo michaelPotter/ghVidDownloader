@@ -62,7 +62,13 @@ class Song(object):
         if not self.hasVideo():
             log.debug(f'Downloading video for {self.name}, {self.artist}')
             self.saveVideoURL()
-            downloadYoutubeVideo(self.topLink(), self.videoPath)
+            try:
+                downloadYoutubeVideo(self.topLink(), self.videoPath)
+            except Exception as e:
+                log.error(f'Couldn\'t download video for {self.name}, {self.artist}')
+                print(e)
+                self.deleteVideoURLFile()
+
         else:
             log.debug(f'video found for {self.name}, {self.artist}')
 
@@ -70,6 +76,11 @@ class Song(object):
         # TODO see if this can be saved in song.ini
         with open(os.path.join(self.path, 'video_origin.txt'), 'w') as f:
             f.write(self.topLink())
+    def deleteVideoURLFile(self):
+        """ Delete the url video file creaded by saveVideoURL """
+        urlfile = os.path.join(self.path, 'video_origin.txt')
+        if os.path.isfile(urlfile):
+            os.remove(urlfile)
          
 
         
