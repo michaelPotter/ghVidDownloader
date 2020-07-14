@@ -7,3 +7,4 @@ https://docs.google.com/spreadsheets/d/1QJ7wotWFoNNSwzIIIAGRcf4WAaYz1pXjhljYSk5h
 TODO:
 	- add option to export/import video offsets
 	- scrape the spreadsheet for available videos
+	- add a blacklist of videos w/out good videos

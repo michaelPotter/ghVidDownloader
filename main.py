@@ -116,6 +116,7 @@ if __name__ == "__main__":
     parser.add_argument('dir')
     args = parser.parse_args()
 
+    print("Scanning songs...")
     for song in getSongs(args.dir):
         song.downloadVideo()
 
