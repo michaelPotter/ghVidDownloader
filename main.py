@@ -3,13 +3,14 @@
 # https://github.com/ytdl-org/youtube-dl/blob/master/README.md#embedding-youtube-dl
 # https://github.com/alexmercerind/youtube-search-python
 
-import os
 import argparse
-import youtube_dl
 import configparser
 import json
-from youtubesearchpython import searchYoutube
 import logging as log
+import os
+import re
+import youtube_dl
+from youtubesearchpython import searchYoutube
 
 log.basicConfig(level=log.DEBUG)
 
@@ -44,7 +45,9 @@ class Song(object):
     @property
     def searchTerm(self):
         """ returns a reasonable search query for this song """
-        return f'{self.name} {self.artist} music video'
+        # strip out the (wavegroup) suffix in some songs to make the search more accurate
+        artist = re.sub(r' ?\(wavegroup\)', "", self.artist, flags=re.I)
+        return f'{self.name} {artist} music video'
 
     def topLink(self):
         """
